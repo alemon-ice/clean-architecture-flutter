@@ -30,4 +30,11 @@ main() {
     final future = datasource.getSearch("alemon");
     expect(future, throwsA(isA<DatasourceError>()));
   });
+
+  test('deve retornar um Exception se tiver um erro no dio', () async {
+    when(dio.get(any)).thenThrow(Exception());
+
+    final future = datasource.getSearch("alemon");
+    expect(future, throwsA(isA<Exception>()));
+  });
 }
